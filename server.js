@@ -1,11 +1,16 @@
 const express = require('express');
-require('dotenv').config()
+const { cronJob } = require('./jobs/job');
+require('dotenv').config({
+    path: './.env'
+});
 const PORT = process.env.PORT || 3000
 const app = express();
 
+cronJob.start();
+
 app.get('/', (req, res) => {
     res.json({
-        msg: 'Hello'
+        msg: 'Hi'
     });
 });
 
